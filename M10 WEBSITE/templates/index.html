@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}Damla damla kurtararak göl oluşur · İklim günlüğün{% endblock %}
+{% block content %}
+<section class="hero container">
+  <div class="hero-copy">
+    <div class="eyebrow"><span class="eyebrow-dot"></span> M10 · İklim farkındalığı projesi</div>
+    <h1>İklim için<br><em>küçük bir damla.</em></h1>
+    <p class="hero-lead">İklim değişikliğinin boyutunu anlamak, kendi evindeki seçimleri görünür kılmakla başlar. Üç kısa soruyla elektrik etkini keşfet; sonra değişimini günlüğünde takip et.</p>
+    <div class="hero-actions">
+      <a class="button button--primary button--large" href="{{ url_for('start') }}">İklim değişikliği testini al <span aria-hidden="true">↗</span></a>
+      <a class="text-link" href="#nasil">Nasıl çalışıyor? <span aria-hidden="true">↓</span></a>
+    </div>
+    <div class="trust-line"><span class="mini-check">✓</span> Yaklaşık 2 dakika <span class="separator">·</span> <span class="mini-check">✓</span> Kayıtların sende kalır</div>
+  </div>
+  <div class="hero-art" aria-label="Dünyanın ve su damlalarının soyut illüstrasyonu">
+    <div class="orbit orbit--one"></div>
+    <div class="orbit orbit--two"></div>
+    <div class="sun-glow"></div>
+    <div class="earth-card">
+      <div class="earth-topline"><span>BUGÜNÜN NOTU</span><span class="live-dot">●</span></div>
+      <div class="earth-orb" aria-hidden="true"><div class="continent continent--one"></div><div class="continent continent--two"></div><div class="cloud cloud--one"></div><div class="cloud cloud--two"></div></div>
+      <div class="earth-caption"><strong>Her seçim bir iz bırakır.</strong><span>İzini fark et, yönünü değiştir.</span></div>
+    </div>
+    <div class="floating-note floating-note--top"><span class="note-icon">↘</span><div><strong>3 adım</strong><small>tek bir fotoğraf</small></div></div>
+    <div class="floating-note floating-note--bottom"><span class="note-icon note-icon--mint">≈</span><div><strong>+ 7 gün</strong><small>değişimi gör</small></div></div>
+    <div class="drop drop--one" aria-hidden="true">✦</div>
+    <div class="drop drop--two" aria-hidden="true">•</div>
+  </div>
+</section>
+
+<section class="impact-strip container" aria-label="Proje özellikleri">
+  <div class="impact-item"><span class="impact-number">01</span><div><strong>Fark et</strong><span>Günlük elektrik etkini gör</span></div></div>
+  <div class="impact-divider" aria-hidden="true"></div>
+  <div class="impact-item"><span class="impact-number">02</span><div><strong>Değiştir</strong><span>Sana uygun üç öneri seç</span></div></div>
+  <div class="impact-divider" aria-hidden="true"></div>
+  <div class="impact-item"><span class="impact-number">03</span><div><strong>Takip et</strong><span>Bir hafta sonra yeniden bak</span></div></div>
+</section>
+
+<section class="story-section container" id="nasil">
+  <div class="section-heading">
+    <div class="eyebrow eyebrow--dark">Büyük resim, kişisel adım</div>
+    <h2>İklim değişikliği uzak bir haber değil;<br><span>evimizde başlayan bir hikâye.</span></h2>
+    <p>Tek başına bir ampul dünyayı değiştirmez. Ama milyonlarca kişinin aynı küçük adımı atması, büyük bir yön değişikliği oluşturur. Bu site, o ilk adımı ölçülebilir ve sürdürülebilir kılmak için var.</p>
+  </div>
+  <div class="story-grid">
+    <article class="story-card story-card--dark">
+      <span class="story-index">01 / FARKINDALIK</span>
+      <div class="story-visual story-visual--rings"><span></span><span></span><span></span><b>+</b></div>
+      <h3>Önce gördüğün şeyi değiştirebilirsin.</h3>
+      <p>Test, evindeki enerji kullanımını tek bir anlaşılır puana dönüştürür.</p>
+    </article>
+    <article class="story-card story-card--mint">
+      <span class="story-index">02 / EYLEM</span>
+      <div class="story-visual story-visual--steps"><i>1</i><i>2</i><i>3</i></div>
+      <h3>Sonuç değil, bir sonraki adım önemli.</h3>
+      <p>Güçlü olduğun alanları koru; sana uygun önerilerden birini seç.</p>
+    </article>
+    <article class="story-card story-card--peach">
+      <span class="story-index">03 / SÜREKLİLİK</span>
+      <div class="story-visual story-visual--calendar"><span>7</span><small>GÜN</small></div>
+      <h3>Bir hafta sonra hikâyenin devamı var.</h3>
+      <p>İlk kaydın günlüğe düşer; tekrar geldiğinde değişimini birlikte okuruz.</p>
+    </article>
+  </div>
+</section>
+
+<section class="cta-band container">
+  <div><span class="eyebrow">Bugün başlayalım</span><h2>Bir damla daha<br><em>seninle.</em></h2></div>
+  <div class="cta-band-action"><p>İklim değişikliğine katkıda bulunmak için testi al.</p><a class="button button--light" href="{{ url_for('start') }}">Kendi damlanı ekle <span aria-hidden="true">↗</span></a></div>
+</section>
+{% endblock %}

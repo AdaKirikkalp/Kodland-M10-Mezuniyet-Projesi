@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Sonucun · Damla damla kurtararak göl oluşur{% endblock %}
+{% block content %}
+<section class="result-shell container">
+  <div class="result-topline"><div class="eyebrow eyebrow--dark">Test tamamlandı · {{ assessment.created_at|trdate }}</div><a class="back-link" href="{{ url_for('dashboard') }}">İlerlememe git →</a></div>
+  <div class="result-hero result-hero--{{ assessment.level }}">
+    <div class="result-copy">
+      <span class="result-kicker">Senin elektrik fotoğrafın</span>
+      <h1>İyi ki baktın,<br><em>{{ assessment.user.first_name }}.</em></h1>
+      <p>{{ assessment.meta.description }}</p>
+      <div class="score-lockup"><strong>{{ assessment.score|round(2) }}</strong><span>kWh<br><small>etki puanı</small></span></div>
+      <div class="level-chip level-chip--{{ assessment.level }}"><span></span>{{ assessment.meta.label }}</div>
+    </div>
+    <div class="result-planet"><div class="planet-ring"></div><img src="{{ url_for('static', filename='img/' ~ assessment.meta.image) }}" alt="{{ assessment.meta.label }} görseli"><span class="planet-caption">Bir damla<br><b>yerine ulaştı.</b></span></div>
+  </div>
+
+  {% if previous and delta is not none %}
+  <div class="comparison-card {% if delta < 0 %}comparison-card--better{% elif delta > 0 %}comparison-card--up{% endif %}">
+    <div class="comparison-icon" aria-hidden="true">{% if delta < 0 %}↓{% elif delta > 0 %}↑{% else %}→{% endif %}</div>
+    <div><span class="comparison-label">Önceki testinle karşılaştırma</span><strong>{% if delta < 0 %}{{ (-delta)|round(2) }} puan azaldı{% elif delta > 0 %}{{ delta|round(2) }} puan arttı{% else %}Aynı seviyede kaldı{% endif %}</strong><small>İlk kayıt: {{ previous.score|round(2) }} kWh · {{ previous.created_at|trdate }}</small></div>
+    <span class="comparison-note">Değişim görünür olduğunda<br>alışkanlık da güçlenir.</span>
+  </div>
+  {% else %}
+  <div class="first-result-note"><span aria-hidden="true">✦</span><div><strong>Bu senin başlangıç noktan.</strong><span>Bir hafta sonra tekrar geldiğinde bu puanla yan yana göreceğiz.</span></div></div>
+  {% endif %}
+
+  <div class="feedback-grid">
+    <section class="feedback-card feedback-card--strengths"><div class="feedback-head"><span class="feedback-icon">✦</span><div><span class="eyebrow eyebrow--dark">Bunlarda iyisin</span><h2>Güçlü damlaların</h2></div></div><ul class="check-list">{% for item in assessment.strengths %}<li><span>✓</span>{{ item }}</li>{% endfor %}</ul></section>
+    <section class="feedback-card feedback-card--actions"><div class="feedback-head"><span class="feedback-icon">↗</span><div><span class="eyebrow eyebrow--dark">Şimdi deneyebileceklerin</span><h2>Üç küçük değişim</h2></div></div><ol class="action-list">{% for item in assessment.suggestions %}<li><span>{{ loop.index }}</span>{{ item }}</li>{% endfor %}</ol></section>
+  </div>
+
+  <div class="result-footer-cta"><div><span class="eyebrow eyebrow--dark">Günlüğe kaydedildi</span><h2>Bir hafta sonra<br>yeniden bakalım mı?</h2><p>Takip tarihi: <strong>{{ assessment.follow_up_at|trdate }}</strong>. Demo için beklemeden de başlatabilirsin.</p></div><div class="result-actions"><a class="button button--primary" href="{{ url_for('dashboard') }}">İlerlememi gör <span aria-hidden="true">→</span></a><a class="button button--secondary" href="{{ url_for('followup', user_id=assessment.user_id) }}">Takip testini simüle et</a></div></div>
+</section>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}{{ config.eyebrow }} · Damla damla kurtararak göl oluşur{% endblock %}
+{% block content %}
+<section class="flow-shell container question-shell">
+  <div class="flow-topline"><a class="back-link" href="{{ url_for('index') }}">← Ana sayfa</a><span>Adım <b>{{ config.step }}</b> / 04</span></div>
+  <div class="progress-track"><span style="width: {{ config.step * 25 }}%"></span></div>
+  <div class="question-heading">
+    <div class="eyebrow eyebrow--dark">{{ config.eyebrow }}</div>
+    <h1>{{ config.title }}</h1>
+    <p>{{ config.description }}</p>
+  </div>
+  <form method="post" class="question-form">
+    <div class="choice-grid choice-grid--{{ config.options|length }}">
+      {% for option in config.options %}
+        <label class="choice-card {% if selected == option.value %}is-selected{% endif %}">
+          <input type="radio" name="{{ config.field }}" value="{{ option.value }}" {% if selected == option.value %}checked{% endif %} required>
+          <span class="choice-check" aria-hidden="true">✓</span>
+          <span class="choice-icon"><img src="{{ url_for('static', filename='img/' ~ option.icon) }}" alt=""></span>
+          <span class="choice-label">{{ option.label }}</span>
+          <span class="choice-detail">{{ option.detail }}</span>
+        </label>
+      {% endfor %}
+    </div>
+    <div class="question-actions"><span class="question-hint">Yaklaşık bir seçim yeterli.</span><button class="button button--primary" type="submit">Devam et <span aria-hidden="true">→</span></button></div>
+  </form>
+</section>
+{% endblock %}
